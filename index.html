@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sommerferien Countdown</title>
   <style>
     body {
@@ -31,16 +32,43 @@
 
     #progress-bar {
       height: 30px;
-      background-color: #4caf50;
+      background-color: #af4c4c;
       width: 0%;
       text-align: center;
       line-height: 30px;
       color: white;
       font-weight: bold;
       transition: width 0.5s ease;
+
+    }
+
+    @media (prefers-color-scheme: dark) {
+      body {
+        background: #232324;
+      }
+
+      h1,
+      p,
+      div {
+        color: #dee8f1;
+      }
+
+      #countdown {
+        font-size: 1.8em;
+        margin: 20px 0;
+      }
+
+      #progress-container {
+        background-color: #747474;
+      }
+
+      #progress-bar {
+        color: rgb(255, 255, 255);
+      }
     }
   </style>
 </head>
+
 <body>
   <h1>Countdown bis zum Ende der Sommerferien</h1>
   <div id="countdown">Wird geladen...</div>
@@ -89,4 +117,5 @@
     setInterval(updateCountdown, 1000);
   </script>
 </body>
+
 </html>
