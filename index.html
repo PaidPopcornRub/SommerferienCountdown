@@ -1,16 +1,92 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="de">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>replit</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sommerferien Countdown</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f8ff;
+      text-align: center;
+      padding: 50px;
+    }
+
+    h1 {
+      color: #2c3e50;
+    }
+
+    #countdown {
+      font-size: 1.8em;
+      margin: 20px 0;
+    }
+
+    #progress-container {
+      width: 80%;
+      margin: 30px auto;
+      background-color: #ddd;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    #progress-bar {
+      height: 30px;
+      background-color: #4caf50;
+      width: 0%;
+      text-align: center;
+      line-height: 30px;
+      color: white;
+      font-weight: bold;
+      transition: width 0.5s ease;
+    }
+  </style>
 </head>
-
 <body>
-  Hello world
-  <script src="script.js"></script>
-</body>
+  <h1>Countdown bis zum Ende der Sommerferien</h1>
+  <div id="countdown">Wird geladen...</div>
 
+  <div id="progress-container">
+    <div id="progress-bar">0%</div>
+  </div>
+
+  <script>
+    // 📅 Sommerferien Zeitraum (anpassen!)
+    const startDate = new Date("2025-07-24T00:00:00");
+    const endDate = new Date("2025-09-03T23:59:59");
+
+
+    function updateCountdown() {
+      const now = new Date();
+
+      const totalDuration = endDate - startDate;
+      const timeLeft = endDate - now;
+      const timePassed = now - startDate;
+
+      if (timeLeft <= 0) {
+        document.getElementById("countdown").innerHTML = "Die Sommerferien sind vorbei!";
+        document.getElementById("progress-bar").style.width = "100%";
+        document.getElementById("progress-bar").textContent = "100%";
+        return;
+      }
+
+      const weeks = Math.floor(timeLeft / (1000 * 60 * 60 * 24 * 7));
+      const days = Math.floor((timeLeft % (1000 * 60 * 60 * 24 * 7)) / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").innerHTML =
+        `${weeks} Wochen, ${days} Tage, ${hours} Stunden, ${minutes} Minuten, ${seconds} Sekunden`;
+
+      // Fortschritt berechnen
+      let progress = Math.min((timePassed / totalDuration) * 100, 100);
+      progress = progress < 0 ? 0 : progress;
+      document.getElementById("progress-bar").style.width = `${progress.toFixed(1)}%`;
+      document.getElementById("progress-bar").textContent = `${progress.toFixed(1)}%`;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
 </html>
