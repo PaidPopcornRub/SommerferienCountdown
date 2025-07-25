@@ -1,3 +1,4 @@
-Ein Countdown bis zum ende der Sommerferien in Hamburg.
+Ein Countdown bis zum Ende der Sommerferien in Hamburg.
+Zeigt Wochen, Tage, Stunden, Minuten und Sekunden an. Darunter wird ein Fortschrittsbalken angezigt.
 
-Teilweise mit KI generiert.
+Code teilweise mit KI generiert.
